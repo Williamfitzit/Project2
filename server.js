@@ -35,19 +35,19 @@ const Goal = require('./db/goals');
 
 
 
-app.get('/', (req, res) => {
+server.get('/', (req, res) => {
     var result = Goal.find().then((goal) => {
         app.locals.goal = goal;
         console.log(goal);
        res.render("index")})
 })
 
-app.get('/goal/new', (req, res)=>{
+server.get('/goal/new', (req, res)=>{
     res.render("new")
     
 })
 
-app.post('/goal', (req, res)=>{
+server.post('/goal', (req, res)=>{
     try{
         console.log(`Request Body is: ${JSON.stringify(req.body)}`)
         let currentDate = new Date()
@@ -68,7 +68,7 @@ app.post('/goal', (req, res)=>{
     }
 })
 
-app.get("/goal/:id", (req, res) =>{
+server.get("/goal/:id", (req, res) =>{
     res.locals.index = req.params.id
     var result = Goal.find({_id:req.params.id}).then((goal) => {
         app.locals.goal = goal;
@@ -76,7 +76,7 @@ app.get("/goal/:id", (req, res) =>{
 
 })
 
-app.get("/goal/:id/delete", (req, res) =>{
+server.get("/goal/:id/delete", (req, res) =>{
     var localID = req.params.id
     var result = Goal.findByIdAndDelete({_id:req.params.id}).then((goal)=>{
         res.redirect("/")
@@ -84,7 +84,7 @@ app.get("/goal/:id/delete", (req, res) =>{
     
 })
 
-app.get("/goal/:id/update", (req, res) =>{
+server.get("/goal/:id/update", (req, res) =>{
     res.locals.index = req.params.id
     var result = Goal.find({_id:req.params.id}).then((goal) => {
         app.locals.goal = goal;
@@ -92,7 +92,7 @@ app.get("/goal/:id/update", (req, res) =>{
         res.render("update")
     })})
 
-    app.post("/goal/:id/update", (req, res) =>{
+    server.post("/goal/:id/update", (req, res) =>{
         var objectiveMatrix = []
         let currentDate = new Date()
         let currentDateForamatted = currentDate.toISOString().split('T')[0]  
@@ -130,6 +130,6 @@ app.get("/goal/:id/update", (req, res) =>{
         res.redirect("/goal/"+req.params.id)
         })
 
-app.listen(PORT, () => {
+        server.listen(PORT, () => {
     console.log(`Server is listening on PORT: ${PORT}`)
 })
