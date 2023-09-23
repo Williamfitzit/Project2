@@ -1,4 +1,5 @@
 // IMPORTS
+require('dotenv').config()
 var http = require('http');
 var bodyParser = require('body-parser')
 const express = require('express')
@@ -8,7 +9,6 @@ var methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.set('view engine', 'ejs');
-require('dotenv').config()
 var ObjectId = require('mongoose').Types.ObjectId; 
 
 const PORT = process.env.PORT || 3000
@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000
 // setup database 
 const mongoose = require('mongoose')
 const mongoURI = process.env.MONGO_URI
-
+console.log(mongoURI)
 
 // connect to mongo 
 mongoose.connect(mongoURI)
