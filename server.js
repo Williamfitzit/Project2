@@ -2,6 +2,7 @@
 var bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
+const server = http.createServer(app);
 var methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({ extended: false }))
