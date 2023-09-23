@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<body>
+    <a href="/">Back</a>
+    <table>
+    <% var arr = goal%>
+    <% arr.forEach((item, i) => { %>
+        <tr><td><a href="/goal/<%=item._id%>"><%=item.name%></a></td>
+            <td>Target Date: <%= item.targetDate %></td><td>Description: <%= item.description %></td>
+            <td><button type="button"><a href="/goal/<%=item._id%>/update"/>Edit</button></td></tr>
+      <% }) %>
+    
+</table>
+
+    <button type="button"><a href="/goal/<%=index%>/delete"/>Delete</button>
+        <button type="button"><a href="/goal/<%=index%>/update"/>Update</button>
+</body>
+</html>

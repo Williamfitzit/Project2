@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+
+<body>
+   
+    <div class="container">
+        <h1>Goals</h1>
+        <table>
+            <% var arr = goal%>
+        <% arr.forEach((item, i) => { %>
+          <tr><td><a href="/goal/<%=item._id%>"><%=item.name%></a></td><td>Target Date: <%= item.targetDate %></td><td>Description: <%= item.description %></td><td><button type="button"><a href="/goal/<%=item._id%>/update"/>Edit</button></td></tr>
+        <% }) %>
+            
+        </table>
+    </div>
+    <button type="button"><a href="/goal/new"/>New Goal</button>
+
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<%- include('../partials/header') %>
+<body>
+
+    <div class="container">
+        <h1>Update Goal</h1>
+        <form action="/goal/<%=goal[0]._id%>/update" method="post">
+            <label for="goalName">Goal Name:</label><br>
+            <input type="text" id="goalName" name="name" value="<%=goal[0].name%>" required><br><br>
+    
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="4" cols="50" value="<%=goal[0].name%>" required></textarea><br><br>
+    
+            <label for="goalTargetDate">Goal Date:</label><br>
+            <input type="date" id="goalTargetDate" name="targetDate" value ="<%=goal[0].targetDate%>" required><br><br>
+            <div id="objective-container">
+            <label for="objectives">Objectives:</label><br>
+            <% var arr = goal[0].objectives %>
+        <% arr.forEach((item, i) => { %>
+            <h3 class="specific-objective">Objective <%=i+1%></h3>
+            <p>
+                <label>Objective Description</label><br>
+                <p><%=item[i]%></p>
+                <input name="Objective_<%=i%>" value ="<%=item.description%>">
+                <% if (item.completed) {%>
+
+                <input type="checkbox" name="completedcheck" checked> <label for="completedcheck"> Completed?</label><br><br>
+                <%}else{ %>
+                <input type="checkbox" name="completedcheck"> <label for="completedcheck"> Completed?</label><br><br>
+                <%}%>
+            </p>
+        <% }) %>
+            
+            </div>
+            <a href="javascript:;" id="add-new-objective" class="add-new-objective">Add New Objective!</a>
+            <input type="submit" value="Submit">
+        </form>
+        
+    </div>
+   
+</body>
+<script>
+    let i =document.querySelectorAll(".specific-objective").length + 1
+    document.getElementById('add-new-objective').onclick = function () {
+        let template = `
+            <h3>Objective ${i}:</h3>
+            <p>
+                <label>Objective Description</label><br>
+                <input name="Objective_${i}">
+                <input type="checkbox" name="completedcheck"> <label for="completedcheck"> Completed?</label><br><br>
+            </p>`;
+    
+        let container = document.getElementById('objective-container');
+        let div = document.createElement('div');
+        div.innerHTML = template;
+        container.appendChild(div);
+    
+        i++;
+        }
+        </script>
+</html>

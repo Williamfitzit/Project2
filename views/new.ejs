@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Goal Setting Form</title>
+</head>
+<style>
+.add-new-objective {
+  background: #6688dd;
+  border-radius: 0.25em;
+  color: #fff;
+  display: inline-block;
+  padding: 0.5em;
+  text-decoration: none;
+}
+</style>
+<body >
+    <h1>Set Your Goal</h1>
+    <form action="/goal" method="post">
+        <label for="goalName">Goal Name:</label><br>
+        <input type="text" id="goalName" name="name" required><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="goalTargetDate">Goal Date:</label><br>
+        <input type="date" id="goalTargetDate" name="targetDate" required><br><br>
+        <div id="objective-container">
+        <label for="objectives">Objectives:</label><br>
+        <h3>Objective 1:</h3>
+        <p>
+            <label>Objective Description</label><br>
+            <input name="Objective_1">
+        </p>
+        </div>
+        <a href="javascript:;" id="add-new-objective" class="add-new-objective">Add New Objective!</a>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+<script>
+let i = 2;
+document.getElementById('add-new-objective').onclick = function () {
+    let template = `
+        <h3>Objective ${i}:</h3>
+        <p>
+            <label>Objective Description</label><br>
+            <input name="Objective_${i}">
+        </p>`;
+
+    let container = document.getElementById('objective-container');
+    let div = document.createElement('div');
+    div.innerHTML = template;
+    container.appendChild(div);
+
+    i++;
+    }
+    </script>
+</html>
