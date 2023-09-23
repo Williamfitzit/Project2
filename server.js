@@ -35,7 +35,7 @@ const Goal = require('./db/goals');
 
 
 
-app.get('/', (req, res) => {
+app.get('/goals', (req, res) => {
     var result = Goal.find().then((goal) => {
         app.locals.goal = goal;
         console.log(goal);
@@ -130,6 +130,6 @@ app.get("/goal/:id/update", (req, res) =>{
         res.redirect("/goal/"+req.params.id)
         })
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server is listening on PORT: ${PORT}`)
 })
