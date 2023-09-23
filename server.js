@@ -35,7 +35,7 @@ const Goal = require('./db/goals');
 
 
 
-app.get('/goals', (req, res) => {
+app.get('/', (req, res) => {
     var result = Goal.find().then((goal) => {
         app.locals.goal = goal;
         console.log(goal);
