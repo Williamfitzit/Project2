@@ -19,7 +19,7 @@ const mongoURI = process.env.MONGO_URI
 
 
 // connect to mongo 
-//mongoose.connect("mongodb://localhost/goals")
+mongoose.connect(mongoURI)
 
 const db = mongoose.connection
 // optional create status messages to check mongo connection 
